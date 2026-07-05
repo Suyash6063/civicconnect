@@ -40,7 +40,7 @@ export default function LiveMap({
       center={center} 
       zoom={13} 
       style={{ height: "100%", width: "100%", borderRadius: "0.5rem" }}
-      className="z-0"
+      className="relative z-20 isolate"
     >
       <ChangeView 
         center={selectedReport ? [selectedReport.latitude, selectedReport.longitude] : center} 

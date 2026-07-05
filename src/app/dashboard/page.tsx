@@ -149,7 +149,7 @@ export default function Dashboard() {
             <span className="text-[10px] font-mono text-gray-200 uppercase tracking-widest ml-2">GIS Uplink Active</span>
           </div>
 
-          <div className="flex-1 w-full relative min-h-[350px] z-0 rounded-lg overflow-hidden border border-white/10 shadow-[0_0_30px_rgba(6,182,212,0.1)]">
+          <div className="flex-1 w-full relative min-h-[350px] z-20 rounded-lg overflow-hidden border border-white/10 shadow-[0_0_30px_rgba(6,182,212,0.1)]">
             <LiveMap 
               reports={reports as any} 
               selectedReport={selectedReport as any} 

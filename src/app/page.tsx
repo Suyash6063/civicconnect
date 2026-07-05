@@ -213,9 +213,9 @@ export default function Home() {
                     Visualize the health of your neighborhood in real-time. Upvote issues that affect you to prioritize municipal response times.
                   </p>
                 </div>
-                <div className="flex-1 w-full rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
+                <a href="/dashboard" className="flex-1 w-full rounded-2xl overflow-hidden border border-white/10 shadow-2xl block cursor-pointer">
                   <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=2070" alt="Map" className="w-full h-[300px] object-cover group-hover:scale-105 transition-transform duration-700" />
-                </div>
+                </a>
               </div>
             </div>
           </ScrollReveal>
