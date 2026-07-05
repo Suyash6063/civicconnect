@@ -110,6 +110,7 @@ export default function Home() {
     <div className="relative min-h-screen bg-[#050505] text-white font-sans overflow-x-hidden">
       
       <style dangerouslySetInnerHTML={{__html: `
+        html { scroll-behavior: smooth; }
         @keyframes blob {
           0% { transform: translate(0px, 0px) scale(1); }
           33% { transform: translate(30px, -50px) scale(1.1); }
@@ -225,7 +226,7 @@ export default function Home() {
                     Visualize the health of your neighborhood in real-time. Upvote issues that affect you to prioritize municipal response times.
                   </p>
                 </div>
-                <a href="/dashboard" className="flex-1 w-full rounded-2xl overflow-hidden border border-white/10 shadow-2xl block cursor-pointer relative z-20 group-hover:border-cyan-500/50 transition-colors duration-500">
+                <a href="#login" onClick={playHoverSound} className="flex-1 w-full rounded-2xl overflow-hidden border border-white/10 shadow-2xl block cursor-pointer relative z-20 group-hover:border-cyan-500/50 transition-colors duration-500">
                   <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=2070" alt="Map" className="w-full h-[300px] object-cover hover:scale-105 transition-transform duration-700" />
                 </a>
               </div>
