@@ -58,6 +58,8 @@ const CIVIC_QUOTES = [
 export default function Home() {
   const [quoteIndex, setQuoteIndex] = useState(0);
   const [fadeState, setFadeState] = useState("opacity-100 scale-100");
+  const [isLogin, setIsLogin] = useState(true);
+  const [isAuthenticating, setIsAuthenticating] = useState(false);
 
   const playHoverSound = () => {
     if (typeof window !== "undefined") {
@@ -78,6 +80,16 @@ export default function Home() {
         osc.stop(ctx.currentTime + 0.05);
       } catch (e) {}
     }
+  };
+
+  const handleAuth = (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsAuthenticating(true);
+    playHoverSound();
+    
+    setTimeout(() => {
+      window.location.href = "/dashboard";
+    }, 1500);
   };
 
   useEffect(() => {
@@ -190,8 +202,8 @@ export default function Home() {
                     Log an Incident
                   </a>
                 </div>
-                <div className="flex-1 w-full rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
-                  <img src="https://images.unsplash.com/photo-1515162816999-a0c47dc192f7?q=80&w=2070" alt="City" className="w-full h-[300px] object-cover group-hover:scale-105 transition-transform duration-700" />
+                <div className="flex-1 w-full rounded-2xl overflow-hidden border border-white/10 shadow-2xl relative z-20">
+                  <img src="https://images.unsplash.com/photo-1515162816999-a0c47dc192f7?q=80&w=2070" alt="City" className="w-full h-[300px] object-cover hover:scale-105 transition-transform duration-700" />
                 </div>
               </div>
             </div>
@@ -213,8 +225,8 @@ export default function Home() {
                     Visualize the health of your neighborhood in real-time. Upvote issues that affect you to prioritize municipal response times.
                   </p>
                 </div>
-                <a href="/dashboard" className="flex-1 w-full rounded-2xl overflow-hidden border border-white/10 shadow-2xl block cursor-pointer">
-                  <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=2070" alt="Map" className="w-full h-[300px] object-cover group-hover:scale-105 transition-transform duration-700" />
+                <a href="/dashboard" className="flex-1 w-full rounded-2xl overflow-hidden border border-white/10 shadow-2xl block cursor-pointer relative z-20 group-hover:border-cyan-500/50 transition-colors duration-500">
+                  <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=2070" alt="Map" className="w-full h-[300px] object-cover hover:scale-105 transition-transform duration-700" />
                 </a>
               </div>
             </div>
@@ -228,17 +240,32 @@ export default function Home() {
           <div className="w-full max-w-md">
             
             <div className="mb-10 text-center">
-              <h3 className="text-3xl font-bold tracking-tight mb-3">Citizen Authentication</h3>
+              <h3 className="text-3xl font-bold tracking-tight mb-3">
+                {isLogin ? "Citizen Authentication" : "Citizen Registration"}
+              </h3>
               <p className="text-gray-400">Secure access required for official submissions.</p>
             </div>
 
             <div className="bg-white/[0.03] backdrop-blur-2xl border border-white/10 rounded-3xl p-8 md:p-12 shadow-2xl">
-              <form className="space-y-6">
+              <form onSubmit={handleAuth} className="space-y-6">
                 
+                {!isLogin && (
+                  <div className="space-y-2 animate-fade-in">
+                    <label className="text-xs font-semibold tracking-widest uppercase text-gray-400 pl-1">Full Name</label>
+                    <input 
+                      type="text" 
+                      required
+                      placeholder="Jane Doe" 
+                      className="w-full bg-black/40 border border-white/10 rounded-xl p-4 text-white placeholder-gray-600 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all outline-none"
+                    />
+                  </div>
+                )}
+
                 <div className="space-y-2">
                   <label className="text-xs font-semibold tracking-widest uppercase text-gray-400 pl-1">Email</label>
                   <input 
                     type="email" 
+                    required
                     placeholder="name@example.com" 
                     className="w-full bg-black/40 border border-white/10 rounded-xl p-4 text-white placeholder-gray-600 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all outline-none"
                   />
@@ -247,21 +274,37 @@ export default function Home() {
                 <div className="space-y-2">
                   <label className="text-xs font-semibold tracking-widest uppercase text-gray-400 pl-1">Password</label>
                   <input 
-                    type="password" 
+                    type="password"
+                    required 
                     placeholder="••••••••" 
                     className="w-full bg-black/40 border border-white/10 rounded-xl p-4 text-white placeholder-gray-600 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all outline-none"
                   />
                 </div>
 
                 <button 
-                  type="button"
+                  type="submit"
+                  disabled={isAuthenticating}
                   onMouseEnter={playHoverSound}
-                  className="w-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold tracking-widest py-4 rounded-xl uppercase hover:shadow-[0_0_20px_rgba(6,182,212,0.4)] hover:-translate-y-0.5 transition-all duration-300 mt-4"
+                  className={`w-full text-white font-bold tracking-widest py-4 rounded-xl uppercase transition-all duration-300 mt-4 ${
+                    isAuthenticating 
+                      ? "bg-gray-800 text-cyan-500 cursor-not-allowed" 
+                      : "bg-gradient-to-r from-cyan-500 to-blue-600 hover:shadow-[0_0_20px_rgba(6,182,212,0.4)] hover:-translate-y-0.5"
+                  }`}
                 >
-                  Sign In
+                  {isAuthenticating ? "VERIFYING..." : isLogin ? "Sign In" : "Register Account"}
                 </button>
               </form>
               
+              <div className="mt-6 text-center">
+                <button 
+                  type="button" 
+                  onClick={() => setIsLogin(!isLogin)}
+                  className="text-xs font-mono text-cyan-500 hover:text-cyan-300 transition-colors uppercase tracking-widest"
+                >
+                  {isLogin ? "Don't have an account? Sign up" : "Already registered? Sign in"}
+                </button>
+              </div>
+
               <div className="mt-8 flex items-center justify-center space-x-4 opacity-50">
                 <div className="h-px bg-white/20 flex-1"></div>
                 <span className="text-xs tracking-widest uppercase">Or</span>
@@ -270,6 +313,8 @@ export default function Home() {
               
               <button 
                 type="button"
+                onClick={handleAuth}
+                disabled={isAuthenticating}
                 onMouseEnter={playHoverSound}
                 className="w-full mt-8 bg-white/5 border border-white/10 text-white font-semibold tracking-widest py-4 rounded-xl hover:bg-white/10 transition-all duration-300 flex items-center justify-center"
               >
