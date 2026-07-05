@@ -122,11 +122,13 @@ export default function Home() {
         .animation-delay-4000 { animation-delay: 4s; }
       `}} />
 
-      <div className="fixed inset-0 w-full h-full z-0 overflow-hidden pointer-events-none opacity-40">
+      <div className="fixed inset-0 w-full h-full z-0 overflow-hidden pointer-events-none">
+        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070')] bg-cover bg-center opacity-15 mix-blend-luminosity"></div>
         <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-purple-900/40 mix-blend-screen filter blur-[100px] animate-blob"></div>
         <div className="absolute top-[20%] right-[-10%] w-[600px] h-[600px] rounded-full bg-cyan-900/40 mix-blend-screen filter blur-[120px] animate-blob animation-delay-2000"></div>
         <div className="absolute bottom-[-20%] left-[20%] w-[700px] h-[700px] rounded-full bg-blue-900/40 mix-blend-screen filter blur-[130px] animate-blob animation-delay-4000"></div>
-        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 brightness-100 contrast-150"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-[#050505]/70 via-[#050505]/40 to-[#050505]/90"></div>
+        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 brightness-100 contrast-150 mix-blend-overlay"></div>
       </div>
 
       <header className="relative z-50 w-full px-8 py-10 flex justify-between items-center">
@@ -187,7 +189,7 @@ export default function Home() {
           <ScrollReveal>
             <div 
               onMouseEnter={playHoverSound}
-              className="group relative rounded-3xl bg-white/5 backdrop-blur-xl border border-white/10 p-1 md:p-2 overflow-hidden hover:bg-white/10 hover:border-white/20 transition-all duration-500"
+              className="group relative rounded-3xl bg-black/40 backdrop-blur-xl border border-white/10 p-1 md:p-2 overflow-hidden hover:bg-black/60 hover:border-white/20 transition-all duration-500"
             >
               <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               <div className="relative flex flex-col md:flex-row items-center gap-12 p-8 md:p-16">
@@ -213,7 +215,7 @@ export default function Home() {
           <ScrollReveal>
             <div 
               onMouseEnter={playHoverSound}
-              className="group relative rounded-3xl bg-white/5 backdrop-blur-xl border border-white/10 p-1 md:p-2 overflow-hidden hover:bg-white/10 hover:border-white/20 transition-all duration-500"
+              className="group relative rounded-3xl bg-black/40 backdrop-blur-xl border border-white/10 p-1 md:p-2 overflow-hidden hover:bg-black/60 hover:border-white/20 transition-all duration-500"
             >
               <div className="absolute inset-0 bg-gradient-to-l from-blue-500/10 to-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               <div className="relative flex flex-col md:flex-row-reverse items-center gap-12 p-8 md:p-16">
@@ -247,7 +249,7 @@ export default function Home() {
               <p className="text-gray-400">Secure access required for official submissions.</p>
             </div>
 
-            <div className="bg-white/[0.03] backdrop-blur-2xl border border-white/10 rounded-3xl p-8 md:p-12 shadow-2xl">
+            <div className="bg-black/60 backdrop-blur-2xl border border-white/10 rounded-3xl p-8 md:p-12 shadow-2xl">
               <form onSubmit={handleAuth} className="space-y-6">
                 
                 {!isLogin && (
