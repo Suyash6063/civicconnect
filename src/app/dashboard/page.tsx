@@ -82,7 +82,7 @@ export default function Dashboard() {
     <div className="min-h-screen bg-[#050505] text-white font-sans p-4 md:p-8 relative overflow-x-hidden">
       <div className="fixed inset-0 bg-[linear-gradient(to_right,#1f29371a_1px,transparent_1px),linear-gradient(to_bottom,#1f29371a_1px,transparent_1px)] bg-[size:3rem_3rem] pointer-events-none"></div>
 
-      <div className="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center border-b border-cyan-500/20 pb-6 mb-8">
+      <div className="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center border-b border-cyan-500/20 pb-6 mb-8 gap-4">
         <div>
           <a href="/" className="text-cyan-500 text-[10px] font-bold tracking-[0.2em] uppercase hover:text-cyan-300 transition-colors">
             &larr; Return to Base
@@ -94,12 +94,28 @@ export default function Dashboard() {
             Status: Operational // Grid: Jamshedpur // Incidents: {reports.length}
           </p>
         </div>
-        <a
-          href="/report"
-          className="mt-4 md:mt-0 px-5 py-2.5 bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-bold uppercase tracking-widest rounded hover:bg-cyan-500 hover:text-black transition-all"
-        >
-          + Log New Anomaly
-        </a>
+        
+        {/* NEW NAVIGATION MENU */}
+        <div className="flex flex-wrap items-center gap-3">
+          <a
+            href="/community"
+            className="px-5 py-2.5 bg-white/5 border border-white/10 text-gray-300 text-xs font-bold uppercase tracking-widest rounded hover:bg-white/10 hover:text-white transition-all"
+          >
+            Community Hub
+          </a>
+          <a
+            href="/analytics"
+            className="px-5 py-2.5 bg-white/5 border border-white/10 text-gray-300 text-xs font-bold uppercase tracking-widest rounded hover:bg-white/10 hover:text-white transition-all"
+          >
+            Analytics
+          </a>
+          <a
+            href="/report"
+            className="px-5 py-2.5 bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-bold uppercase tracking-widest rounded hover:bg-cyan-500 hover:text-black transition-all shadow-[0_0_15px_rgba(6,182,212,0.15)]"
+          >
+            + Log New Anomaly
+          </a>
+        </div>
       </div>
 
       <div className="relative z-10 grid grid-cols-1 lg:grid-cols-3 gap-8">
